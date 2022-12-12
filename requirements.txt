@@ -1,4 +1,4 @@
-rasa>=3.3.3
+rasa
 underthesea
 flask
 python-dotenv
