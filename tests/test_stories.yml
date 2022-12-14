@@ -1,0 +1,29 @@
+#### This file contains tests to evaluate that your bot behaves as expected.
+#### If you want to learn more, please see the docs: https://rasa.com/docs/rasa/testing-your-assistant
+
+stories:
+- story: happy path 1
+  steps:
+  - user: |
+      xin chào
+    intent: greet
+  - action: utter_greet
+  - user: |
+      tuyệt vời
+    intent: mood_great
+  - action: utter_happy
+
+- story: happy path 2
+  steps:
+  - user: |
+      xin chào
+    intent: greet
+  - action: utter_greet
+  - user: |
+      tuyệt vời
+    intent: mood_great
+  - action: utter_happy
+  - user: |
+      tạm biệt!
+    intent: goodbye
+  - action: utter_goodbye

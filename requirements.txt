@@ -8,3 +8,8 @@ pandas
 scikit-learn
 transformers
 wikipedia
+pycountry
+dateparser
+boto3
+fasttext
+rasa_nlu_examples

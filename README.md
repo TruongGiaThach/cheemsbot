@@ -1,36 +1,35 @@
 # Cheemsbot from Rasa
 
-## Requirement:x
-- python 3.8
+## Requirement:
+- python 3.8 and python virtual enviroment
 
 ```shell
 python -m venv venv
-venv/Scripts/activate
+venv/Scripts/activate or source venv/bin/activate
 pip install -r requirements.txt
 ```
-
+I've used pretrained word vector of fasttext So you need to download pretrained word vector from fasttext
+```
+mkdir vi_feature
+wget https://dl.fbaipublicfiles.com/fasttext/vectors-crawl/cc.vi.300.bin.gz -P vi_feature
+gunzip cc.vi.300.bin.gz
+```
 ----------------------------------------------------------------------------------------------------
-## Setting:
-- Open file: `custom\vi_tokenize.py` change path url to stopwords file 'PATH_STOP_WORD'
-
-- Copy 3 file from directory 'custom' overwrite to rasa directory of you:
-    ### Examples:
-        C:\Users\Admin\anaconda3\Lib\site-packages\rasa\nlu\utils\hugging_face\registry.py
-        C:\Users\Admin\anaconda3\Lib\site-packages\rasa\engine\recipes\default_components.py
-        C:\Users\Admin\anaconda3\Lib\site-packages\rasa\nlu\tokenizers\vi_tokenize.py
-
-- You can also copy the file contents slack-custom.py overwrite file slack.py in rasa directory
-----------------------------------------------------------------------------------------------------
-## Train:
+## Train cheemsbot:
  
 ```shell
 rasa train
 ```
 
-## Run:
+## Init fake store's db
+```
+python init_db.py
+```
+
+## Run cheemsbot:
  
 ```shell
-rasa run actions
+rasa run actions --auto-reload
 ```
  
 ```shell
