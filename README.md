@@ -29,6 +29,7 @@ python init_db.py
 ## Run cheemsbot:
  
 ```shell
+docker compose up
 rasa run actions --auto-reload
 ```
  

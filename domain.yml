@@ -109,7 +109,7 @@ responses:
   utter_giup:
   - text: 'Tôi có thể giúp gì bạn'
   utter_is_bot:
-  - text: 'Tôi là chatbot mục đích đặt lịch hẹn được tạo bởi Rasa'
+  - text: 'Tôi là chatbot của cửa hàng được tạo bởi Rasa'
   utter_ask_name:
   - text: 'Anh/Chị muốn hẹn gặp ai?'
   utter_ask_time:
