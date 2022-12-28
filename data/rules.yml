@@ -78,7 +78,7 @@ rules:
 #   - action: dat_lich_form
 #   - active_loop: dat_lich_form
 
-- rule: thong_tin_cua_hang
+- rule: discuss_products
   steps:
-  - intent: thong_tin_cua_hang
+  - intent: discuss_products
   - action: action_ask_info_store

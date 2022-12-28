@@ -11,20 +11,25 @@ def create_connection():
 		print(e)
 	return conn
 
-# def get_info_from_masv(masv):
-# 	conn = create_connection()
-# 	try:
-# 		cur = conn.cursor()
-# 		sql = """ SELECT MaHocPhan, Score
-# 	              FROM Score 
-# 	              WHERE MaSinhVien = %s 
-# 	          """
-# 		cur.execute(sql, (masv,))
-# 		conn.commit()
-# 		records = cur.fetchall()
-# 		return records
-# 	except:
-# 		conn.rollback()
+def get_info_from_cate(_cate):
+	conn = create_connection()
+	try:
+
+		cur = conn.cursor()
+
+		sql = """ SELECT P.name
+	              FROM products as P, product_categories as PC
+	              WHERE P.product_category = PC.id and 
+				  lower(PC.name) like %s
+	          """
+		_cate = "'%" + _cate + "%'"
+		print(_cate)
+		cur.execute(sql,(_cate,))
+		conn.commit()
+		records = cur.fetchall()
+		return records
+	except:
+		conn.rollback()
 
 # def get_info_gv_from_mon_hoc(subjects):
 # 	conn = create_connection()

@@ -1,16 +1,65 @@
 version: "3.1"
 stories:
+- story: happy path 1 (./venv/lib64/python3.8/site-packages/rasa/cli/initial_project/tests/test_stories.yml)
+  steps:
+  - intent: greet  # predicted: xin_chao: hello there!
+  - action: utter_greet  # predicted: action_default_fallback
+  - intent: mood_great  # predicted: nlu_fallback: amazing
+  - action: utter_happy  # predicted: action_default_fallback
+- story: happy path 2 (./venv/lib64/python3.8/site-packages/rasa/cli/initial_project/tests/test_stories.yml)
+  steps:
+  - intent: greet  # predicted: xin_chao: hello there!
+  - action: utter_greet  # predicted: action_default_fallback
+  - intent: mood_great  # predicted: nlu_fallback: amazing
+  - action: utter_happy  # predicted: action_default_fallback
+  - intent: goodbye  # predicted: tam_biet: bye-bye!
+  - action: utter_goodbye  # predicted: action_default_fallback
+- story: sad path 1 (./venv/lib64/python3.8/site-packages/rasa/cli/initial_project/tests/test_stories.yml)
+  steps:
+  - intent: greet  # predicted: xin_chao: hello
+  - action: utter_greet  # predicted: action_default_fallback
+  - intent: mood_unhappy  # predicted: xin_chao: not good
+  - action: utter_cheer_up  # predicted: action_default_fallback
+  - action: utter_did_that_help  # predicted: action_listen
+  - intent: affirm  # predicted: nlu_fallback: yes
+  - action: utter_happy  # predicted: action_default_fallback
+- story: sad path 2 (./venv/lib64/python3.8/site-packages/rasa/cli/initial_project/tests/test_stories.yml)
+  steps:
+  - intent: greet  # predicted: xin_chao: hello
+  - action: utter_greet  # predicted: action_default_fallback
+  - intent: mood_unhappy  # predicted: xin_chao: not good
+  - action: utter_cheer_up  # predicted: action_default_fallback
+  - action: utter_did_that_help  # predicted: action_listen
+  - intent: deny  # predicted: xin_chao: not really
+  - action: utter_goodbye  # predicted: action_default_fallback
+- story: sad path 3 (./venv/lib64/python3.8/site-packages/rasa/cli/initial_project/tests/test_stories.yml)
+  steps:
+  - intent: greet  # predicted: xin_chao: hi
+  - action: utter_greet  # predicted: action_default_fallback
+  - intent: mood_unhappy  # predicted: show_my_order_status: very terrible
+  - action: utter_cheer_up  # predicted: action_default_fallback
+  - action: utter_did_that_help  # predicted: action_listen
+  - intent: deny  # predicted: xin_chao: no
+  - action: utter_goodbye  # predicted: action_default_fallback
+- story: say goodbye (./venv/lib64/python3.8/site-packages/rasa/cli/initial_project/tests/test_stories.yml)
+  steps:
+  - intent: goodbye  # predicted: tam_biet: bye-bye!
+  - action: utter_goodbye  # predicted: action_default_fallback
+- story: bot challenge (./venv/lib64/python3.8/site-packages/rasa/cli/initial_project/tests/test_stories.yml)
+  steps:
+  - intent: bot_challenge  # predicted: out_of_scope: are you a bot?
+  - action: utter_iamabot  # predicted: action_default_fallback
 - story: happy path 1 (./tests/test_stories.yml)
   steps:
-  - intent: greet  # predicted: nlu_fallback: xin chào
-  - action: utter_greet
-  - intent: mood_great  # predicted: affirm: tuyệt vời
-  - action: utter_happy
+  - intent: greet  # predicted: xin_chao: xin chào
+  - action: utter_greet  # predicted: action_default_fallback
+  - intent: mood_great  # predicted: khen: tuyệt vời
+  - action: utter_happy  # predicted: action_default_fallback
 - story: happy path 2 (./tests/test_stories.yml)
   steps:
-  - intent: greet  # predicted: nlu_fallback: xin chào
-  - action: utter_greet
-  - intent: mood_great  # predicted: affirm: tuyệt vời
-  - action: utter_happy
-  - intent: goodbye  # predicted: nlu_fallback: tạm biệt!
-  - action: utter_goodbye
+  - intent: greet  # predicted: xin_chao: xin chào
+  - action: utter_greet  # predicted: action_default_fallback
+  - intent: mood_great  # predicted: khen: tuyệt vời
+  - action: utter_happy  # predicted: action_default_fallback
+  - intent: goodbye  # predicted: tam_biet: tạm biệt!
+  - action: utter_goodbye  # predicted: action_default_fallback

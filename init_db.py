@@ -8,6 +8,7 @@ except (Exception, psycopg2.Error) as e:
 print("Database opened successfully")
 #-------------------------------------------
 cur = conn.cursor()
+cur.execute("DROP TABLE IF EXISTS PRODUCTS;")
 cur.execute("DROP TABLE IF EXISTS PRODUCT_CATEGORIES;")
 cur.execute(
     '''CREATE TABLE PRODUCT_CATEGORIES
@@ -38,7 +39,7 @@ print("Product category's record inserted successfully")
 cur = conn.cursor()
 cur.execute("DROP TABLE IF EXISTS PRODUCT;")
 cur.execute(
-    '''CREATE TABLE PRODUCT
+    '''CREATE TABLE PRODUCTS
     (
       ID INT PRIMARY    KEY     NOT NULL,
       NAME              TEXT    NOT NULL,
@@ -51,19 +52,19 @@ cur.execute(
     '''
 )
 
-print("PRODUCT table created successfully")
+print("PRODUCTS table created successfully")
 
 conn.commit()
 #--------------
 cur = conn.cursor()
 
-cur.execute("INSERT INTO PRODUCT (ID,NAME) VALUES (1, 'Điện thoại Nokia')");
-cur.execute("INSERT INTO PRODUCT (ID,NAME) VALUES (2, 'Điện thoại SamSung')");
-cur.execute("INSERT INTO PRODUCT (ID,NAME) VALUES (3, 'Laptop Asus VivoBook')");
-cur.execute("INSERT INTO PRODUCT (ID,NAME) VALUES (4, 'Lenovo Tab M8')");
+cur.execute("INSERT INTO PRODUCTS (ID,NAME,PRODUCT_CATEGORY) VALUES (1, 'Điện thoại Nokia', 2)");
+cur.execute("INSERT INTO PRODUCTS (ID,NAME, PRODUCT_CATEGORY) VALUES (2, 'Điện thoại SamSung', 2)");
+cur.execute("INSERT INTO PRODUCTS (ID,NAME, PRODUCT_CATEGORY) VALUES (3, 'Laptop Asus VivoBook', 4)");
+cur.execute("INSERT INTO PRODUCTS (ID,NAME, PRODUCT_CATEGORY) VALUES (4, 'Lenovo Tab M8', 3)");
 
 
 conn.commit()
-print("Product category's record inserted successfully")
+print("Product's record inserted successfully")
 
 conn.close()

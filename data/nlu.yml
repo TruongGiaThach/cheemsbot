@@ -1,83 +1,6 @@
 version: "3.1"
 
 nlu:
-- intent: xin_chao
-  examples: |
-    - Xin chào anh/chị
-    - Chào bạn
-    - Buổi sáng tốt lành
-    - Buổi sáng vui vẻ
-    - Một ngày tốt lành
-    - Xin chào
-    - Rất vui được gặp bạn
-    - Chào
-    - Chào anh
-    - Chào chị
-    - Chào cậu
-    - Halo
-    - Hi
-    - Hello
-
-- intent: tam_biet
-  examples: |
-    - Tạm biệt
-    - Hẹn gặp lại
-    - Hẹn gặp bạn vào lần sau
-    - Bye
-    - Tôi đi đây
-
-- intent: hoi_suc_khoe
-  examples: |
-    - Bạn có khỏe không
-    - Chào, bạn có khỏe không
-    - Xin chào, dạo này ổn chứ
-    - Dạo này bạn khỏe chứ
-    - Hy vọng bạn vẫn khỏe
-    - Chào, hy vọng bạn vẫn ổn
-
-- intent: hoi_ten
-  examples: |
-    - Tên bạn là gì
-    - Tôi có thể biết tên bạn được không
-    - Tôi có thể gọi bạn là gì
-    - Bạn bè của bạn gọi bạn như thế nào
-    - Bạn là ai
-    - Nói cho tôi tên bạn đi
-    - Bạn là cái gì vậy
-    - Tên bạn
-
-- intent: cam_on
-  examples: |
-    - Cảm ơn
-    - Cảm ơn nha
-    - Ok thanks
-    - Cảm ơn bạn
-    - Cảm ơn nhiều
-    - Hữu ích đấy
-
-- intent: continue
-  examples: |
-    - Câm mồm
-    - Im mồm
-    - Dừng lại đi
-    - Đừng nói nữa
-    - Dừng lại ngay
-    - Không được nói nữa
-    - Cấm nói
-
-- intent: khen
-  examples: |
-    - Giỏi đấy
-    - Bạn giỏi đấy
-    - Thông minh lắm
-    - Giỏi quá
-    - Bạn thật thông minh
-    - Trí tuệ bạn thật tuyệt
-    - Bạn quả là thông minh
-    - Bạn thật giỏi
-    - Thông minh
-    - Giỏi lắm
-    - Khá khen cho bạn
 
 - intent: ke_chuyen
   examples: |
@@ -224,7 +147,66 @@ nlu:
     - dừng lại đi
     - tôi không muốn tiếp tục
 
-- intent: thong_tin_cua_hang 
+
+- intent: out_of_scope
   examples: |
-    - Sản phẩm
-    - Cửa hàng có bán gì?
+    - làm ơn giúp tôi với kem đang nhỏ giọt
+    - tôi muốn một cây kem không nhỏ giọt
+    - ai đó gọi cảnh sát tôi nghĩ bot đã chết
+    - cho tôi xem hình con gà
+    - cũng không
+    - Tôi muốn ẩm thực Pháp
+    - tôi đói
+    - quán ăn
+    - tôi có thể được chỉ cho một nhà hàng không chứa gluten không
+    - Tôi không quan tâm!!!!
+    - tôi không quan tâm bạn thế nào
+    - lại?
+    - oh chờ đã, tôi đã cho bạn địa chỉ email công việc của tôi, tôi có thể thay đổi nó không?
+    - đợi tí để em tìm
+    - thôi đi, tôi không quan tâm!!!
+    - làm thế nào mà?
+    - Tôi đã thay đổi tâm trí của tôi
+    - Gì?
+    - tôi đã phá vỡ bạn
+    - liên kết đó không hoạt động!
+    - bạn đã có cái đó rồi
+    - đây là một kinh nghiệm thực sự bực bội
+    - không dừng lại
+    - cho tôi thức ăn
+    - tôi muốn thực phẩm
+    - Tôi có thể đặt câu hỏi cho bạn trước được không?
+    - đó có phải là một vùng đất hoang đầy những bộ phận robot bị hỏng không?
+    - chúng ta tiếp tục nói chuyện được không?
+    - nói với tôi
+    - robot yêu thích của bạn là ai?
+    - bạn có thể giúp tôi xây dựng bot không
+    - mâm cặp gỗ không thể kẹp bất kỳ loại gỗ nào
+    - một mâm cặp gỗ không thể tặc gỗ
+    - em có mặc gì không?
+    - tôi có thể sắp xếp một chiếc taxi được không?
+    - tôi có thể đặt một chiếc taxi không?
+    - tôi gọi pizza được không?
+    - cho quiche một cơ hội
+    - mâm cặp gỗ có thể gắp được bao nhiêu gỗ nếu mâm cặp gỗ sẽ gắp gỗ?
+    - tôi là người có vũ khí hạng nặng và đây là vũ khí của tôi
+    - tôi biết võ công
+    - tôi cần một chiếc taxi
+    - tôi muốn một chiếc bánh pizza pepperoni
+    - tôi muốn đặt một chiếc bánh pizza
+    - tôi muốn một chiếc bánh pizza
+    - tôi hết kẹo cao su rồi
+    - anh cầu hôn em
+    - đó là một biểu thức albany
+    - kết hôn với tôi
+    - bây giờ tôi có một khẩu súng máy ho-ho-ho!
+    - xin hãy cưới anh
+    - nói cho tôi biết bạn đang mặc gì?
+    - thử thách bằng đá!
+    - bạn đang mặc gì?
+    - em sẽ lấy anh chứ?
+    - bạn đến với tôi vào ngày cưới của con gái tôi
+    - bạn không giành được bạn bè với salad
+    - bạn sẽ cần một chiếc thuyền lớn hơn
+    - mẹ kiếp
+    - Ôi chúa ơi

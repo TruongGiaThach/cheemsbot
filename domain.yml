@@ -5,29 +5,22 @@ session_config:
   carry_over_slots_to_new_session: true
 
 entities:
-- name
-- time
-- support
+- product   
+- product_cat
+- may_tinh      
+- dien_thoai      
 
 slots:
-  name:
+  product:
     type: text
-    influence_conversation: false
     mappings:
     - type: from_entity
-      entity: name
-      # conditions:
-      # - active_loop: dat_lich_form
-      #   requested_slot: name
-  time:
+      entity: product
+  productCategory:
     type: text
-    influence_conversation: false
     mappings:
     - type: from_entity
-      entity: time
-      # conditions:
-      # - active_loop: dat_lich_form
-      #   requested_slot: time
+      entity: product_cat
   support:
     type: bool
     influence_conversation: false
@@ -40,51 +33,62 @@ slots:
       intent: tu_choi
 
 forms:
-  dat_lich_form:
+  dat_san_pham:
     required_slots:
-    - name
-    - time
+    - product
     - support
 
 intents:
-- xin_chao:
-    use_entities: true
-- tam_biet:
-    use_entities: true
-- hoi_suc_khoe:
-    use_entities: true
-- hoi_ten:
-    use_entities: true
-- cam_on:
-    use_entities: true
-- continue:
-    use_entities: true
-- khen:
-    use_entities: true
-- ke_chuyen:
-    use_entities: true
-- ke_chuyen_cuoi:
-    use_entities: true
-- hat:
-    use_entities: true
-- giup:
-    use_entities: true
-- dong_y:
-    use_entities: true
-- tu_choi:
-    use_entities: true
-- is_bot:
-    use_entities: true
-- dat_lich:
-    use_entities: true
-- inform:
-    use_entities: true
-- reset:
-    use_entities: []
-- dung_lai:
-    use_entities: true
-- thong_tin_san_pham:
-    use_entities: true
+  - xin_chao:
+      use_entities: true
+  - tam_biet:
+      use_entities: true
+  - hoi_suc_khoe:
+      use_entities: true
+  - hoi_ten:
+      use_entities: true
+  - cam_on:
+      use_entities: true
+  - continue:
+      use_entities: true
+  - khen:
+      use_entities: true
+  - ke_chuyen:
+      use_entities: true
+  - ke_chuyen_cuoi:
+      use_entities: true
+  - hat:
+      use_entities: true
+  - giup:
+      use_entities: true
+  - dong_y:
+      use_entities: true
+  - tu_choi:
+      use_entities: true
+  - is_bot:
+      use_entities: true
+  - dat_lich:
+      use_entities: true
+  - inform:
+      use_entities: true
+  - reset:
+      use_entities: []
+  - dung_lai:
+      use_entities: true
+  - thong_tin_cua_hang
+  - out_of_scope
+  - discuss_purpose
+  - discuss_products
+  - discuss_product_search_types
+  - figuring_out_user_product_choice:
+      use_entities: 
+      - product
+  - query_product_category:
+      use_entities: 
+      - product_cat
+  - show_my_order_status
+  - request_product_info
+
 
 
 responses:
@@ -112,17 +116,8 @@ responses:
   - text: 'Tôi là chatbot của cửa hàng được tạo bởi Rasa'
   utter_ask_name:
   - text: 'Anh/Chị muốn hẹn gặp ai?'
-  utter_ask_time:
-  - text: 'Anh/Chị muốn gặp {name} vào thời gian nào?'
-  utter_ask_support:
-  - text: 'Đặt lịch hẹn {name} vào {time}.Thông tin trên đã đúng chưa ạ?'
-    buttons:
-    - title: 'Đúng'
-      payload: '/dong_y'
-    - title: 'Sai'
-      payload: '/tu_choi'
   utter_ask_continue:
-  - text: 'Bạn có muốn dừng việc đặt lịch lại?'
+  - text: 'Bạn có muốn dừng việc đặt lại?'
     buttons:
     - title: 'Có'
       payload: '/dong_y'
@@ -130,15 +125,33 @@ responses:
       payload: '/tu_choi'
   utter_submit:
   - text: 'Oke cảm ơn anh/chị đã sử dụng dịch vụ'
-  utter_dat_lich_slots:
-  - text: 'Bạn đã đặt lịch thành công với {name} vào {time}'
   utter_thong_tin_cua_hang:
   - text: 'Các sản phẩm của cửa hàng gồm '
+  utter_out_of_scope:
+  - text: "Tôi ước tôi có thể trả lời câu hỏi của bạn, Vui lòng hỏi một số câu hỏi khác."
+  - text: "Sorry I don't know the answer."
+  - text: "Tôi vẫn đang học! Xin vui lòng hỏi tôi một số câu hỏi khác."
+  - text: "Tuyệt cú mèo, câu hỏi không tồn tại trong bộ nhớ"
+  utter_confirm_slot:
+  - text: For the Product, you have selected {product} and for the Product Categories, you have selected {productCategory}
+  utter_check_product_category:
+  - text: "Cửa hàng hiện tại đang bán các mặt hàng sau, vui lòng lựa chọn mặt hàng bạn muốn tìm kiếm"
+    buttons:
+    - title: ' Laptop'
+      payload: '/query_product_category{{"product_cat" : "Laptop"}}'
+    - title: ' Điện thoại'
+      payload: '/query_product_category{{"product_cat": "Điện thoại"}}'
+  utter_discuss_products:
+  - text: "Cửa hàng hiện tại đang bán các mặt hàng máy tính và điện thoại"
+    buttons:
+    - title: Xem các sản phẩm máy tính
+      payload: /figuring_out_user_product_choice{{"product":"Body Care"}}
+    - title: Xem các sản phẩm điện thoại
+      payload: /figuring_out_user_product_choice{{"product":"Toilet Cleaners"}}
+    - title: Find me some Vegetables
 
 actions:
 - utter_ask_name
-- utter_ask_time
-- utter_ask_support
 - utter_ask_continue
 - utter_xin_chao
 - utter_tam_biet
@@ -155,6 +168,7 @@ actions:
 - utter_submit
 - utter_dat_lich_slots
 - action_reset_slot
-- utter_thong_tin_san_pham
 - action_ask_info_store
+- utter_confirm_slot
+- collect_product_by_product_cate
 

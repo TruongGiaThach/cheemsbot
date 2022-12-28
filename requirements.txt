@@ -13,3 +13,5 @@ dateparser
 boto3
 fasttext
 rasa_nlu_examples
+fuzzywuzzy
+python-graphql-client

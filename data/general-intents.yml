@@ -1,0 +1,85 @@
+version: "3.1"
+
+nlu:
+- synonym: dien_thoai    #entity
+  examples: |
+    - Di dộng
+    - Điện thoại di động
+
+- intent: xin_chao
+  examples: |
+    - Xin chào anh/chị
+    - Chào bạn
+    - Buổi sáng tốt lành
+    - Buổi sáng vui vẻ
+    - Một ngày tốt lành
+    - Xin chào
+    - Rất vui được gặp bạn
+    - Chào
+    - Chào anh
+    - Chào chị
+    - Chào cậu
+    - Halo
+    - Hi
+    - Hello
+
+- intent: tam_biet
+  examples: |
+    - Tạm biệt
+    - Hẹn gặp lại
+    - Hẹn gặp bạn vào lần sau
+    - Bye
+    - Tôi đi đây
+
+- intent: hoi_suc_khoe
+  examples: |
+    - Bạn có khỏe không
+    - Chào, bạn có khỏe không
+    - Xin chào, dạo này ổn chứ
+    - Dạo này bạn khỏe chứ
+    - Hy vọng bạn vẫn khỏe
+    - Chào, hy vọng bạn vẫn ổn
+
+- intent: hoi_ten
+  examples: |
+    - Tên bạn là gì
+    - Tôi có thể biết tên bạn được không
+    - Tôi có thể gọi bạn là gì
+    - Bạn bè của bạn gọi bạn như thế nào
+    - Bạn là ai
+    - Nói cho tôi tên bạn đi
+    - Bạn là cái gì vậy
+    - Tên bạn
+
+- intent: cam_on
+  examples: |
+    - Cảm ơn
+    - Cảm ơn nha
+    - Ok thanks
+    - Cảm ơn bạn
+    - Cảm ơn nhiều
+    - Hữu ích đấy
+
+- intent: continue
+  examples: |
+    - Câm mồm
+    - Im mồm
+    - Dừng lại đi
+    - Đừng nói nữa
+    - Dừng lại ngay
+    - Không được nói nữa
+    - Cấm nói
+
+- intent: khen
+  examples: |
+    - Giỏi đấy
+    - Bạn giỏi đấy
+    - Thông minh lắm
+    - Giỏi quá
+    - Bạn thật thông minh
+    - Trí tuệ bạn thật tuyệt
+    - Bạn quả là thông minh
+    - Bạn thật giỏi
+    - Thông minh
+    - Giỏi lắm
+    - Khá khen cho bạn

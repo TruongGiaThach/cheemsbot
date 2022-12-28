@@ -1,0 +1,80 @@
+[
+  {
+    "text": "Làm ơn tạo cuộc gặp mặt thầy [Mạnh Tiến] (name) vào khoảng thời gian 8:00 am",
+    "entities": [
+      {
+        "start": 69,
+        "end": 76,
+        "value": "8:00 am",
+        "entity": "time"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "Xin vui lòng làm một cuộc tư vấn với anh Biển vào thời gian 5 giờ chiều, ngày 8 tháng 6 năm 2022",
+    "entities": [
+      {
+        "start": 41,
+        "end": 45,
+        "value": "Biển",
+        "entity": "name"
+      },
+      {
+        "start": 60,
+        "end": 96,
+        "value": "5 giờ chiều, ngày 8 tháng 6 năm 2022",
+        "entity": "time"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "name",
+        "start": 41,
+        "end": 45,
+        "confidence_entity": 0.9997350573539734,
+        "value": "Biển",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "Muốn làm quen với chị [Nguyệt] vào thời gian 5 giờ chiều nay",
+    "entities": [
+      {
+        "start": 45,
+        "end": 60,
+        "value": "5 giờ chiều nay",
+        "entity": "time"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "Xin vui lòng làm một cuộc tư vấn với Cô Hạnh vào thời gian 4 giờ chiều, ngày 8 tháng 6 năm 2022",
+    "entities": [
+      {
+        "start": 40,
+        "end": 44,
+        "value": "Hạnh",
+        "entity": "name"
+      },
+      {
+        "start": 59,
+        "end": 95,
+        "value": "4 giờ chiều, ngày 8 tháng 6 năm 2022",
+        "entity": "time"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "name",
+        "start": 40,
+        "end": 44,
+        "confidence_entity": 0.9998642206192017,
+        "value": "Hạnh",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  }
+]

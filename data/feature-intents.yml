@@ -1,0 +1,53 @@
+version: "3.1"
+
+nlu:
+- intent: discuss_purpose
+  examples: |
+    - Bạn làm được gì?
+    - Bạn giúp được gì?
+    - Bạn cung cấp dịch vụ nào
+    - bạn có khả năng gì
+
+- intent: discuss_products
+  examples: |
+    - Bạn bán sản phẩm gì?
+    - Ở đây có bán gì
+    - Bạn có gì
+    - Bán gì vậy
+    - Cho tôi biết về thông tin sản phẩm
+    - Cửa hàng bán gì
+  
+
+- intent: discuss_product_search_types
+  examples: | 
+    - Làm sao để tìm kiếm sản phẩm
+    - Tôi muốn mua một sản phẩm
+    - loại sản phẩm
+    - xem loại sản phẩm
+
+- intent: figuring_out_user_product_choice
+  examples: |
+    - Tôi đang tìm [điện thoại nokia](product)
+
+- intent: query_product_category
+  examples: |
+    - tôi cần tìm [máy tính](product_cat)
+    - có [máy tính](product_cat)
+
+- intent: show_my_order_status
+  examples: |
+    - I would like to know my order status
+    - Where is my order
+    - When I will get the delivery
+    - Where is my delivery
+    - When will I receive my order
+    - When will I get my order
+
+- intent: request_product_info
+  examples: |
+    - i want to search for some products
+    - proceed with searching for products
+    - want to search something
+    - i will provide details on what I want
+    - i want to search something specific
+    - want to find a specific item
