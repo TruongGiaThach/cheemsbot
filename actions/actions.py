@@ -53,12 +53,6 @@ class GetInfoStore(Action):
     def name(self) -> Text:
         return "action_ask_info_store"
 
-    def format_text(self,list_):
-        s = ''
-        for item in list_:
-            s += item['name'] +'\n'
-        return s
-
     def response_message(self, latest_message):
 
         list_category = db.get_info_store()
@@ -66,8 +60,10 @@ class GetInfoStore(Action):
         if list_category == '0' or len(list_category) == 0:
             return "Cửa hàng hiện tại chưa có loại sản phẩm phục vụ !."
         else:
-            str_list_category = self.format_text(list_category)
-            message = "Các sản phẩm của cửa hàng hiện tại gồm \n" + str_list_category + "---" 
+           
+            message = "Các sản phẩm của cửa hàng hiện tại gồm \n "  
+            for item in list_category:
+                message += '* ' + item["name"] + ' \n '
             return message
 
     def run(self, dispatcher: CollectingDispatcher,
@@ -83,32 +79,69 @@ class CollectProductByProducCate(Action):
     def name(self) -> Text:
         return "collect_product_by_product_cate"
 
-    def format_text(self,list_):
-        s = ''
+    def format_text(self,list_,cate):
+        res = {
+            "type" : "template",
+            "payload":{
+                "template_type": "generic",
+                "elements":[
+
+                ]
+            }
+        }
         for item in list_:
-            s += item[0] +'\n'
-        return s
+            image_url = ""
+            if item["medias"] == []:
+                image_url = "https://media.sproutsocial.com/uploads/2017/02/10x-featured-social-media-image-size.png"
+            else: image_url = item["medias"][0]["filePath"]
+            obj = {
+                "title": item["name"],
+                "subtitle": "sub",
+                "image_url": image_url,
+                "buttons": [{
+                    "title": "Xem chi tiết",
+                    "url": "https://cheems-angular-web.vercel.app/product-list/product/" + item["id"],
+                    "type": "web_url"
+                },
+                {
+                    "title": "Xem sản phẩm cùng loại",
+                    "type": "web_url",
+                    "url": "https://cheems-angular-web.vercel.app/product-list/" + cate,
+
+                }
+                # {
+                #     "title": "Xem sản phẩm cùng loại",
+                #     "type": "postback",
+                #     "payload": "/affirm"
+                # }
+                ]
+            }
+            res["payload"]["elements"].append(obj)
+        return res
 
     def response_message(self, latest_message, _cate = None):
-
+        if  not _cate:
+            return "Cửa hàng hiện tại chưa có loại sản phẩm phục vụ!", None
         products = db.get_info_from_cate(_cate)
-        print(products)
         if products == None :
-            return "Cửa hàng hiện tại chưa có loại sản phẩm phục vụ !."
+            return "Cửa hàng hiện tại chưa có loại sản phẩm phục vụ!", None
         else:
-            str_products = self.format_text(products)
-            message = "Các sản phẩm của cửa hàng thể loại " + _cate + "\n" + str_products + "---" 
-            return message
+            # str_products = self.format_text(products)
+            # message = "Các sản phẩm của cửa hàng thể loại " + _cate + "\n" + str_products + "---" 
+            message = "Các sản phẩm của cửa hàng thể loại " + _cate + "\n" 
+            res = self.format_text(products,_cate)
+            return message, res
 
     def run(self, dispatcher: CollectingDispatcher,
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         latest_message = (tracker.latest_message)['text']
         category_value = tracker.get_slot("productCategory")
+        if not category_value:
+            dispatcher.utter_message(text="không cate",attachment=None)
+        message, res = self.response_message(latest_message, category_value)
 
-        message = self.response_message(latest_message, category_value)
-
-        dispatcher.utter_message(text=message)
+        dispatcher.utter_message(text=message, attachment=res)
         return []
 
 class QueryOrderUpdate(Action):

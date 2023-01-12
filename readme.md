@@ -93,6 +93,7 @@ To get a local copy up and running follow these simple example steps.
     ```
 * Activate virtual env
   ```sh
+  venv/Scripts/activate
   source ./venv/bin/activate
   ```
 
@@ -118,25 +119,6 @@ rasa run  --cors "*" --enable-api
 
 rasa run actions
 ```
-<!-- ROADMAP -->
-## Roadmap
-
-- [X] hold basic greet-happy-path conversations
-- [X] user can inquire about bot capabilities
-- [X] user can inquire about search techniques
-- [X] bot guides through search process
-    - [X] query user for search term
-    - [X] bot suggests search terms
-    - [X] multi-field querying (for this example, in our deployed database the bot queries from the following columns)
-        - column: ProductRoles
-        - column: ProductCategory
-- [X] place an order on confirmed product choice
-    - [X] update Order table with unique order id and user_id from tracker
-- [X] check for order status
-
-See the [pull requests](https://github.com/ShreyasDatta/e-Commerce-chatbot-rasa/pull/1) for a full list of proposed features and task completion roadmap.
-
-<p align="right">(<a href="#top">back to top</a>)</p>
 
 
 
@@ -163,27 +145,21 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
+## Run cheemsbot:
+ 
+```shell
+docker compose up
+rasa run actions --auto-reload
+```
+ 
+```shell
+rasa run shell
+```
 
+```
+rasa run  --cors "*" --enable-api
+```
 
-<!-- CONTACT -->
-## Contact
-
-Shreyas Datta - [@FirePhoenix837](https://twitter.com/FirePhoenix837) - yasdatta@gmail.com
-
-Project Link: [https://github.com/shreyasdatta/e-Commerce-chatbot-rasa](https://github.com/shreyasdatta/e-Commerce-chatbot-rasa)
-
-<p align="right">(<a href="#top">back to top</a>)</p>
-
-
-
-<!-- ACKNOWLEDGMENTS
-## Acknowledgments
-
-* []()
-* []()
-* []()
-
-<p align="right">(<a href="#top">back to top</a>)</p> -->
 
 
 

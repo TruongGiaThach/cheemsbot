@@ -27,11 +27,15 @@ nlu:
 
 - intent: figuring_out_user_product_choice
   examples: |
-    - Tôi đang tìm [điện thoại nokia](product)
+    - Tôi đang tìm [điện thoại nokia]{"entity": "product", "role": "dien_thoai"}
+    - [ip]{"entity": "product", "role": "dien_thoai"}
+    - [nokia]{"entity": "product", "role": "dien_thoai"}
+
 
 - intent: query_product_category
   examples: |
     - tôi cần tìm [máy tính](product_cat)
+    - tôi cần tìm [điện thoại](product_cat)
     - có [máy tính](product_cat)
 
 - intent: show_my_order_status

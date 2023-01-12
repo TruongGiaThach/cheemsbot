@@ -43,9 +43,13 @@ pipeline:
     epochs: 100
     constrain_similarities: true
     model_cofidence: linear_norm
+  - name: ResponseSelector
+    epochs: 200
+    constrain_similarities: true
   - name: EntitySynonymMapper
   - name: FallbackClassifier
-    threshold: 0.2
+    threshold: 0.7
+    ambiguity_threshold: 0.1
 # Configuration for Rasa Core.
 # https://rasa.com/docs/rasa/core/policies/
 policies:
@@ -61,12 +65,22 @@ policies:
 #     max_history: 5
 #     epochs: 100
 #     constrain_similarities: true
-  - name: MemoizationPolicy
-  - name: TEDPolicy
-    epochs: 100
-    max_history: 5
-    constrain_similarities: true
+  - name: "MemoizationPolicy"
+    max_history: 3
   - name: RulePolicy
+    core_fallback_threshold: 0.4
+    core_fallback_action_name: "action_default_fallback"
+    enable_fallback_prediction: True
+  - name: UnexpecTEDIntentPolicy
+    max_history: 4
+    ignore_intents_list: -"figuring_out_user_product_choice"
+                     -"query_product_category"
+    tolerance: 0.1
+    epochs: 200
+  - name: TEDPolicy
+    max_history: 4
+    epochs: 200
+    constrain_similarities: true
 
 
 #------------------------------ver2------------------

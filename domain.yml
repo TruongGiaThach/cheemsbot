@@ -75,7 +75,6 @@ intents:
       use_entities: []
   - dung_lai:
       use_entities: true
-  - thong_tin_cua_hang
   - out_of_scope
   - discuss_purpose
   - discuss_products
@@ -125,13 +124,10 @@ responses:
       payload: '/tu_choi'
   utter_submit:
   - text: 'Oke cảm ơn anh/chị đã sử dụng dịch vụ'
-  utter_thong_tin_cua_hang:
-  - text: 'Các sản phẩm của cửa hàng gồm '
-  utter_out_of_scope:
+  utter_default:
   - text: "Tôi ước tôi có thể trả lời câu hỏi của bạn, Vui lòng hỏi một số câu hỏi khác."
   - text: "Sorry I don't know the answer."
   - text: "Tôi vẫn đang học! Xin vui lòng hỏi tôi một số câu hỏi khác."
-  - text: "Tuyệt cú mèo, câu hỏi không tồn tại trong bộ nhớ"
   utter_confirm_slot:
   - text: For the Product, you have selected {product} and for the Product Categories, you have selected {productCategory}
   utter_check_product_category:
@@ -164,11 +160,10 @@ actions:
 - utter_hat
 - utter_giup
 - utter_is_bot
-- validate_dat_lich_form
 - utter_submit
-- utter_dat_lich_slots
 - action_reset_slot
 - action_ask_info_store
 - utter_confirm_slot
 - collect_product_by_product_cate
+- utter_default
 
