@@ -38,20 +38,11 @@ nlu:
     - tôi cần tìm [điện thoại](product_cat)
     - có [máy tính](product_cat)
 
-- intent: show_my_order_status
-  examples: |
-    - I would like to know my order status
-    - Where is my order
-    - When I will get the delivery
-    - Where is my delivery
-    - When will I receive my order
-    - When will I get my order
-
-- intent: request_product_info
-  examples: |
-    - i want to search for some products
-    - proceed with searching for products
-    - want to search something
-    - i will provide details on what I want
-    - i want to search something specific
-    - want to find a specific item
+# - intent: show_my_order_status
+#   examples: |
+#     - I would like to know my order status
+#     - Where is my order
+#     - When I will get the delivery
+#     - Where is my delivery
+#     - When will I receive my order
+#     - When will I get my order

@@ -85,9 +85,6 @@ intents:
   - query_product_category:
       use_entities: 
       - product_cat
-  - show_my_order_status
-  - request_product_info
-
 
 
 responses:
@@ -116,7 +113,7 @@ responses:
   utter_ask_name:
   - text: 'Anh/Chị muốn hẹn gặp ai?'
   utter_ask_continue:
-  - text: 'Bạn có muốn dừng việc đặt lại?'
+  - text: 'Bạn có muốn dừng lại?'
     buttons:
     - title: 'Có'
       payload: '/dong_y'

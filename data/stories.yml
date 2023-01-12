@@ -2,6 +2,10 @@ version: "3.1"
 
 stories:
 
+- story: discuss_products
+  steps:
+  - intent: discuss_products
+  - action: utter_check_product_category
 
 - story: product_discussion
   steps:
@@ -12,13 +16,26 @@ stories:
   steps:
   - intent: query_product_category
     entities:
-      - product_cat: Laptop
+      - productCat: Laptop
   - slot_was_set:
     - productCategory: Laptop
-  # - action: utter_confirm_slot
   - action: collect_product_by_product_cate
-  # - action: utter_ask_to_place_order
-  # - or:
-  #   - intent: confirm_order
-  #   - intent: affirm
-  # - action: place_confirmed_order
+
+
+- story: query_through_product_category_unhappy_path
+  steps:
+  - intent: query_product_category
+    entities:
+      - productCat: 
+  - intent: dung_lai
+  # - action: utter_confirm_slot
+
+- story: stop_conservation
+  steps:
+  - intent: dung_lai
+  - action: utter_submit
+
+- story: stop_conservation_2
+  steps:
+  - intent: tu_choi
+  - action: utter_submit
