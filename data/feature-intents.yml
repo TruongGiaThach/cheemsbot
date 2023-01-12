@@ -30,6 +30,10 @@ nlu:
     - Tôi đang tìm [điện thoại nokia]{"entity": "product", "role": "dien_thoai"}
     - [ip]{"entity": "product", "role": "dien_thoai"}
     - [nokia]{"entity": "product", "role": "dien_thoai"}
+    - [samsung]{"entity": "product", "role": "dien_thoai"}
+    - Tôi đang tìm [legion]{"entity": "product", "role": "may_tinh"}
+    - [asus]{"entity": "product", "role": "may_tinh"}
+    - [legion 5]{"entity": "product", "role": "may_tinh"}
 
 
 - intent: query_product_category

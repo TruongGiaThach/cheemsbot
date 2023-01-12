@@ -60,15 +60,6 @@ nlu:
     - Cảm ơn nhiều
     - Hữu ích đấy
 
-- intent: continue
-  examples: |
-    - Câm mồm
-    - Im mồm
-    - Dừng lại đi
-    - Đừng nói nữa
-    - Dừng lại ngay
-    - Không được nói nữa
-    - Cấm nói
 
 - intent: khen
   examples: |

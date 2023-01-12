@@ -49,8 +49,6 @@ intents:
       use_entities: true
   - cam_on:
       use_entities: true
-  - continue:
-      use_entities: true
   - khen:
       use_entities: true
   - ke_chuyen:
@@ -82,6 +80,8 @@ intents:
   - figuring_out_user_product_choice:
       use_entities: 
       - product
+      - may_tinh      
+      - dien_thoai   
   - query_product_category:
       use_entities: 
       - product_cat
@@ -163,4 +163,4 @@ actions:
 - utter_confirm_slot
 - collect_product_by_product_cate
 - utter_default
-
+- collect_product_info

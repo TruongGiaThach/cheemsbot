@@ -138,7 +138,7 @@ class CollectProductByProducCate(Action):
         latest_message = (tracker.latest_message)['text']
         category_value = tracker.get_slot("productCategory")
         if not category_value:
-            dispatcher.utter_message(text="không cate",attachment=None)
+            dispatcher.utter_message(text="Cửa hàng hiện tại chưa có loại sản phẩm phục vụ!",attachment=None)
         message, res = self.response_message(latest_message, category_value)
 
         dispatcher.utter_message(text=message, attachment=res)
@@ -346,3 +346,71 @@ class dbQueryMethods:
                     return f"we have {row[0]} in stock."
 
             
+class CollectProductInfo(Action):
+    def name(self) -> Text:
+        return "collect_product_info"
+
+    def format_text(self,list_,cate):
+        res = {
+            "type" : "template",
+            "payload":{
+                "template_type": "generic",
+                "elements":[
+
+                ]
+            }
+        }
+        for item in list_:
+            image_url = ""
+            if item["medias"] == []:
+                image_url = "https://media.sproutsocial.com/uploads/2017/02/10x-featured-social-media-image-size.png"
+            else: image_url = item["medias"][0]["filePath"]
+            obj = {
+                "title": item["name"],
+                "subtitle": "sub",
+                "image_url": image_url,
+                "buttons": [{
+                    "title": "Xem chi tiết",
+                    "url": "https://cheems-angular-web.vercel.app/product-list/product/" + item["id"],
+                    "type": "web_url"
+                },
+                {
+                    "title": "Xem sản phẩm cùng loại",
+                    "type": "web_url",
+                    "url": "https://cheems-angular-web.vercel.app/product-list/" + cate,
+
+                }
+                # {
+                #     "title": "Xem sản phẩm cùng loại",
+                #     "type": "postback",
+                #     "payload": "/affirm"
+                # }
+                ]
+            }
+            res["payload"]["elements"].append(obj)
+        return res
+
+    def response_message(self, latest_message, _cate = None):
+        if  not _cate:
+            return "Cửa hàng hiện tại chưa có loại sản phẩm phục vụ!", None
+        products = db.get_info_from_cate(_cate)
+        if products == None :
+            return "Cửa hàng hiện tại chưa có loại sản phẩm phục vụ!", None
+        else:
+            # str_products = self.format_text(products)
+            # message = "Các sản phẩm của cửa hàng thể loại " + _cate + "\n" + str_products + "---" 
+            message = "Các sản phẩm của cửa hàng thể loại " + _cate + "\n" 
+            res = self.format_text(products,_cate)
+            return message, res
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        latest_message = (tracker.latest_message)['text']
+        category_value = tracker.get_slot("productCategory")
+        if not category_value:
+            dispatcher.utter_message(text="Cửa hàng hiện tại chưa có loại sản phẩm phục vụ!",attachment=None)
+        message, res = self.response_message(latest_message, category_value)
+
+        dispatcher.utter_message(text=message, attachment=res)
+        return []

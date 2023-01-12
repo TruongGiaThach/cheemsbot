@@ -39,3 +39,13 @@ stories:
   steps:
   - intent: tu_choi
   - action: utter_submit
+
+- story: product_general_query
+  steps:
+  - intent: figuring_out_user_product_choice
+    entities:
+      - product: ip
+        role: dien_thoai
+  - slot_was_set:
+    - product: ip
+  - action: collect_product_info
