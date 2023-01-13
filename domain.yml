@@ -16,6 +16,10 @@ slots:
     mappings:
     - type: from_entity
       entity: product
+    - type: from_entity
+      entity: may_tinh
+    - type: from_entity
+      entity: dien_thoai
   productCategory:
     type: text
     mappings:
@@ -164,3 +168,4 @@ actions:
 - collect_product_by_product_cate
 - utter_default
 - collect_product_info
+- reset_slot

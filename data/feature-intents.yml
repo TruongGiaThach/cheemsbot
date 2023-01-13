@@ -27,13 +27,16 @@ nlu:
 
 - intent: figuring_out_user_product_choice
   examples: |
-    - Tôi đang tìm [điện thoại nokia]{"entity": "product", "role": "dien_thoai"}
-    - [ip]{"entity": "product", "role": "dien_thoai"}
-    - [nokia]{"entity": "product", "role": "dien_thoai"}
-    - [samsung]{"entity": "product", "role": "dien_thoai"}
-    - Tôi đang tìm [legion]{"entity": "product", "role": "may_tinh"}
-    - [asus]{"entity": "product", "role": "may_tinh"}
-    - [legion 5]{"entity": "product", "role": "may_tinh"}
+    - Tôi đang tìm [điện thoại nokia](dien_thoai)
+    - Tôi đang tìm [latop asus](may_tinh)
+    - [ip](dien_thoai)
+    - [nokia](dien_thoai)
+    - [samsung](dien_thoai)
+    - Tôi đang tìm [legion](may_tinh)
+    - [asus](may_tinh)
+    - [legion 5](may_tinh)
+    - bạn có bán máy tính asus(may_tinh) không
+
 
 
 - intent: query_product_category
@@ -41,6 +44,8 @@ nlu:
     - tôi cần tìm [máy tính](product_cat)
     - tôi cần tìm [điện thoại](product_cat)
     - có [máy tính](product_cat)
+    - bạn có bán điện thoại(dien_thoai) không
+
 
 # - intent: show_my_order_status
 #   examples: |

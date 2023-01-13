@@ -16,17 +16,18 @@ stories:
   steps:
   - intent: query_product_category
     entities:
-      - productCat: Laptop
+      - product_cat: Laptop
   - slot_was_set:
     - productCategory: Laptop
   - action: collect_product_by_product_cate
+  - action: reset_slot
 
 
 - story: query_through_product_category_unhappy_path
   steps:
   - intent: query_product_category
     entities:
-      - productCat: 
+      - product_cat: 
   - intent: dung_lai
   # - action: utter_confirm_slot
 
@@ -44,8 +45,19 @@ stories:
   steps:
   - intent: figuring_out_user_product_choice
     entities:
-      - product: ip
-        role: dien_thoai
+      - dien_thoai: ip
   - slot_was_set:
     - product: ip
   - action: collect_product_info
+  - action: reset_slot
+
+
+- story: product_general_query_2
+  steps:
+  - intent: figuring_out_user_product_choice
+    entities:
+      - may_tinh: legion
+  - slot_was_set:
+    - product: legion
+  - action: collect_product_info
+  - action: reset_slot

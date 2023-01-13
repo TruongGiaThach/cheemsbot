@@ -137,10 +137,7 @@ class CollectProductByProducCate(Action):
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         latest_message = (tracker.latest_message)['text']
         category_value = tracker.get_slot("productCategory")
-        if not category_value:
-            dispatcher.utter_message(text="Cửa hàng hiện tại chưa có loại sản phẩm phục vụ!",attachment=None)
         message, res = self.response_message(latest_message, category_value)
-
         dispatcher.utter_message(text=message, attachment=res)
         return []
 
@@ -390,16 +387,24 @@ class CollectProductInfo(Action):
             res["payload"]["elements"].append(obj)
         return res
 
-    def response_message(self, latest_message, _cate = None):
+    def response_message(self, latest_message, product_name, _cate = None):
         if  not _cate:
-            return "Cửa hàng hiện tại chưa có loại sản phẩm phục vụ!", None
-        products = db.get_info_from_cate(_cate)
-        if products == None :
-            return "Cửa hàng hiện tại chưa có loại sản phẩm phục vụ!", None
+            return "Cửa hàng hiện tại chưa có sản phẩm phục vụ!", None
+        products = db.get_product_info_from_search_string(product_name)
+        if not products or products == [] :
+            products = db.get_info_from_cate(_cate)
+            if products == None :
+                return "Cửa hàng hiện tại chưa có loại sản phẩm phục vụ!", None
+            else:
+                # str_products = self.format_text(products)
+                # message = "Các sản phẩm của cửa hàng thể loại " + _cate + "\n" + str_products + "---" 
+                message = "Cửa hàng hiện tại chưa có sản phẩm phục vụ!" + ' \n\n' + "Bạn có thể tham khảo các sản phẩm chung thể loại sau:" + ' \n\n '
+                res = self.format_text(products,_cate)
+                return message, res
         else:
             # str_products = self.format_text(products)
             # message = "Các sản phẩm của cửa hàng thể loại " + _cate + "\n" + str_products + "---" 
-            message = "Các sản phẩm của cửa hàng thể loại " + _cate + "\n" 
+            message = "Các sản phẩm của cửa hàng với từ khóa  " + product_name + "\n" 
             res = self.format_text(products,_cate)
             return message, res
 
@@ -407,10 +412,30 @@ class CollectProductInfo(Action):
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         latest_message = (tracker.latest_message)['text']
-        category_value = tracker.get_slot("productCategory")
-        if not category_value:
-            dispatcher.utter_message(text="Cửa hàng hiện tại chưa có loại sản phẩm phục vụ!",attachment=None)
-        message, res = self.response_message(latest_message, category_value)
+        category_value = tracker.latest_message['entities'][0]['entity']
+        product_value = tracker.get_slot("product")
+        if (category_value == 'dien_thoai'):
+            category_value = 'Điện thoại'
+        else : category_value = 'Laptop'
+        print(category_value)
+
+        message, res = self.response_message(latest_message,product_value ,category_value)
 
         dispatcher.utter_message(text=message, attachment=res)
         return []
+
+class ResetSlot(Action):
+    def name(self):
+        return 'reset_slot'
+    def run(self, dispatcher, tracker, domain):
+        return [AllSlotsReset()]
+
+class SetCateSlotValue(Action):
+    def name(self):
+        return 'set_cate_slot_value'
+    def run(self,
+        slot_value: Any,
+        dispatcher, 
+        tracker, 
+        domain):
+        return[SlotSet("productCategory", slot_value)]

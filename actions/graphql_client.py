@@ -111,6 +111,48 @@ def get_info_from_cate(_cate):
         data = data['data']['productTypes']['items']
     return data
 
+
+def get_product_info_from_search_string(_value):
+    client = create_connection()
+    if _value == None:
+        return None
+    data = []
+    query = ('''
+        query($input: ProductTypesFilterInput) {
+            productTypes(input: $input) {
+                items {
+                    id,
+                    name,
+                    description,
+                    medias {
+                        id,
+                        filePath,
+                        fileSize,
+                        fileType
+                    },
+                    price,
+                    warrantyPeriod
+                }
+            }
+        }
+    ''')
+    variables = {
+        "input": {
+            "isDeleted": False,
+            "names": [
+                _value
+            ]
+	    }
+    }
+    # Synchronous request
+    data = client.execute(query=query, variables=variables)
+
+    # Asynchronous request
+    # data = asyncio.run(client.execute_async(query=query, variables=variables))
+    if data != []:
+        data = data['data']['productTypes']['items']
+    return data
+
  # => {'data': {'country': {'code': 'CA', 'name': 'Canada'}}}
 
 

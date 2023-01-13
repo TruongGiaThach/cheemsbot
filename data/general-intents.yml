@@ -1,7 +1,7 @@
 version: "3.1"
 
 nlu:
-- synonym: dien_thoai    #entity
+- synonym: điện thoại   
   examples: |
     - Di dộng
     - Điện thoại di động
